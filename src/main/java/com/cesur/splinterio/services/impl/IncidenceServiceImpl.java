@@ -30,20 +30,15 @@ public class IncidenceServiceImpl implements IncidenceService {
     }
 
     @Override
-    public boolean storeIncidence(IncienceDTO datos) {
+    public void storeIncidence(IncienceDTO datos) {
         Incidence incidence = new Incidence();
-        incidence.setCategory(datos.getCategory());
         incidence.setDescription(datos.getDescription());
-        incidence.setPriority(datos.getPriority());
         incidence.setCreatedAt(LocalDateTime.now());
+        incidence.setPriority(datos.getPriority());
+        incidence.setScope(datos.getScope());
         incidence.setUserCreated(null);
+        incidenceRepository.save(incidence);
 
-        Incidence response = incidenceRepository.save(incidence);
-        if(response == null){
-            return true;
-        }else{
-            return false;
-        }
     }
 
     @Override
