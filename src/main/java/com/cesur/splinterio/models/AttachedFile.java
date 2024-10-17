@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "historical")
+@Table(name = "attachedFile")
 @AllArgsConstructor
 @NoArgsConstructor
 public class AttachedFile {
