@@ -1,12 +1,14 @@
 package com.cesur.splinterio.services.impl;
 
 import java.util.List;
-import java.time.*;
+import java.util.Optional;
+import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cesur.splinterio.models.Incidence;
+import com.cesur.splinterio.models.User;
 import com.cesur.splinterio.models.dtos.IncienceDTO;
 import com.cesur.splinterio.repositories.IncidenceRepository;
 import com.cesur.splinterio.repositories.UserRepository;
@@ -28,13 +30,16 @@ public class IncidenceServiceImpl implements IncidenceService {
 
     @Override
     public void storeIncidence(IncienceDTO datos) {
-        Incidence incidence = new Incidence();
-        incidence.setDescription(datos.getDescription());
-        incidence.setCreatedAt(LocalDateTime.now());
-        incidence.setPriority(datos.getPriority());
-        incidence.setScope(datos.getScope());
-        incidence.setUserCreated(null);
-        incidenceRepository.save(incidence);
+        Optional<User> user = userRepository.findById(Long.parseLong(datos.getUserCreated()));
+        if(user.isPresent()){
+            Incidence incidence = new Incidence();
+            incidence.setDescription(datos.getDescription());
+            incidence.setCreatedAt(LocalDateTime.now());
+            incidence.setPriority(datos.getPriority());
+            incidence.setScope(datos.getScope());
+            incidence.setUserCreated(user.get());
+            incidenceRepository.save(incidence);
+        }
     }
 
     @Override
