@@ -13,7 +13,6 @@ import com.cesur.splinterio.models.dtos.IncienceDTO;
 import com.cesur.splinterio.repositories.IncidenceRepository;
 import com.cesur.splinterio.repositories.UserRepository;
 import com.cesur.splinterio.services.IncidenceService;
-
 @Service
 public class IncidenceServiceImpl implements IncidenceService {
 

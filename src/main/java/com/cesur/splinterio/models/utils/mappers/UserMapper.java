@@ -1,68 +1,37 @@
 package com.cesur.splinterio.models.utils.mappers;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 import java.time.LocalDateTime;
 
 import com.cesur.splinterio.models.User;
 import com.cesur.splinterio.models.dtos.UserDTO;
-import com.cesur.splinterio.models.dtos.UserDTOWOP;
+@Mapper(componentModel = "spring")
+public interface UserMapper {
+    UserMapper instance = Mappers.getMapper(UserMapper.class);
 
-public class UserMapper {
-    public static UserDTO userToDTO(User user){
-        UserDTO response = new UserDTO();
-        if(user != null){
-            response.setId(user.getId());
-            response.setName(user.getName());
-            response.setEmail(user.getEmail());
-            response.setRol(user.getRol());
-            response.setActive(user.getActive());
-            response.setPassword(user.getPassword());
-            response.setLastConnection(user.getLastConnection());
-        }
-        return response;
+    UserDTO userToUserDTO(User user);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "lastConnection", ignore = true)
+    @Mapping(target = "deletedAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    User userDTOToUserDB(UserDTO user);
+
+    @Mapping(target = "id", ignore = true)
+    User userDTOToUserWithoutId(UserDTO user);
+
+    //condiciones complejas
+    @Mapping(target = "password", ignore = true)
+    UserDTO userToUserDTOWithoutPassword(User user);
+    
+    
+    // UserDTO userToUserDTOLastConnection(User user);
+        // Marca el método con @Named para que MapStruct lo reconozca correctamente
+    @Named("getCurrentTime")
+    default LocalDateTime getCurrentTime() {
+        return LocalDateTime.now();
     }
-    public static UserDTOWOP userToDtoWOP(User user){
-        UserDTOWOP response;
-        if(user != null){
-            response = new UserDTOWOP(
-                user.getId(), 
-                user.getName(),
-                user.getEmail(),
-                user.getRol(),
-                user.getActive(),
-                user.getLastConnection()
-            );
-        }else {
-            response = new UserDTOWOP();
-        }
-        return response;
-    }
-    public static User dtoToUserCreated(UserDTO user){
-        User response = new User();
-        if(user != null){
-            response.setId(user.getId());
-            response.setName(user.getName());
-            response.setEmail(user.getEmail());
-            response.setPassword(user.getPassword());
-            response.setRol(user.getRol());
-            
-            response.setActive(user.getActive());
-            // response.setDeletedAt();
-            // response.setUpdateAt();
-            // response.setLastConnection();
-            if(user.getCreatedAt() == null){
-                response.setCreatedAt(LocalDateTime.now());
-            } else {
-                response.setCreatedAt(user.getCreatedAt());
-                if (user.getDeleteAt() != null){
-                    response.setDeletedAt(user.getDeleteAt());
-                } else if(user.getUpdatedAt() != null ){
-
-                }
-            }
-
-        } 
-        return response;
-    }
-
-
 }

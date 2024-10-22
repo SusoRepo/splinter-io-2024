@@ -16,13 +16,13 @@ import com.cesur.splinterio.models.dtos.IncienceDTO;
 import com.cesur.splinterio.services.IncidenceService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/incidence")
 public class IncidenceController {
 
     @Autowired
     IncidenceService incidenceService;
 
-    @GetMapping("/incidences")
+    @GetMapping("/list")
     public ResponseEntity<List<Incidence>> getAllIncidences() {
         try {
             return ResponseEntity.ok(incidenceService.getAllIncidences());
@@ -31,7 +31,7 @@ public class IncidenceController {
         }
     }
 
-    @PostMapping("/incidence")
+    @PostMapping("")
     public ResponseEntity<Void> storeIncidence(@RequestBody IncienceDTO entity) {
         try {
             incidenceService.storeIncidence(entity);

@@ -7,6 +7,7 @@ import com.cesur.splinterio.models.utils.enums.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @NoArgsConstructor
@@ -19,8 +20,7 @@ public class UserDTO {
     private Roles rol;
     private Boolean active;
     private LocalDateTime lastConnection;
-    //
     private LocalDateTime createdAt;
-    private LocalDateTime deleteAt;
+    private LocalDateTime deletedAt;
     private LocalDateTime updatedAt;
 }
