@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class IncienceDTO {
-    //crtl + alt + shift + flecha abajo
     private String description;
     private Priorities priority;
     private Scopes scope;

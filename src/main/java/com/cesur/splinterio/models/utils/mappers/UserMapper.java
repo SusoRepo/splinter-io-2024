@@ -1,10 +1,7 @@
 package com.cesur.splinterio.models.utils.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
-
-import java.time.LocalDateTime;
 
 import com.cesur.splinterio.models.User;
 import com.cesur.splinterio.models.dtos.UserDTO;
@@ -17,21 +14,15 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "lastConnection", ignore = true)
     @Mapping(target = "deletedAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true )
     User userDTOToUserDB(UserDTO user);
 
     @Mapping(target = "id", ignore = true)
     User userDTOToUserWithoutId(UserDTO user);
 
-    //condiciones complejas
     @Mapping(target = "password", ignore = true)
     UserDTO userToUserDTOWithoutPassword(User user);
-    
-    
-    // UserDTO userToUserDTOLastConnection(User user);
-        // Marca el método con @Named para que MapStruct lo reconozca correctamente
-    @Named("getCurrentTime")
-    default LocalDateTime getCurrentTime() {
-        return LocalDateTime.now();
-    }
+
+    UserDTO userToUserDTOLastConnection(User user);
+
 }
