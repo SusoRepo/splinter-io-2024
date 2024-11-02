@@ -25,7 +25,7 @@ public class IncidenceServiceImpl implements IncidenceService {
     @Override
     public List<Incidence> getIncidencesByUserName(String username) {
         User user = userRepository.getUserByEmail(username).get();
-        List<Incidence> incidencesByUser = incidenceRepository.findByUser(user).get();
+        List<Incidence> incidencesByUser = incidenceRepository.findByUser(user.getId()).get();
         return incidencesByUser;
     }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cesur.splinterio.models.Incidence;
@@ -22,10 +23,10 @@ public class IncidenceController {
     @Autowired
     IncidenceService incidenceService;
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Incidence>> getAllIncidences() {
+    @GetMapping("/user")
+    public ResponseEntity<List<Incidence>> getIncidencesByUsername(@RequestParam(name = "username") String username) {
         try {
-            return ResponseEntity.ok(incidenceService.getAllIncidences());
+            return ResponseEntity.ok(incidenceService.getIncidencesByUserName(username));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
