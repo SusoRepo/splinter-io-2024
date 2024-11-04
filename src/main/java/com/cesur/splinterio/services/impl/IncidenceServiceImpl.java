@@ -45,7 +45,13 @@ public class IncidenceServiceImpl implements IncidenceService {
 
     @Override
     public void deleteIncidence(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'deleteIncidence'");
+        try {
+            Incidence incidence = incidenceRepository.getById(id);
+            incidenceRepository.delete(incidence);
+        } catch (Exception e) {
+            throw new Error();
+        }
+        
     }
 
     @Override
