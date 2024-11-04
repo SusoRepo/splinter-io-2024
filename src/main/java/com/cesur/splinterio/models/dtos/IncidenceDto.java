@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 @Data
 @AllArgsConstructor
-public class IncienceDTO {
+public class IncidenceDto {
     private String description;
     private Priorities priority;
     private Scopes scope;
