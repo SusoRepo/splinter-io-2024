@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 
 import com.cesur.splinterio.models.Incidence;
 import com.cesur.splinterio.models.User;
