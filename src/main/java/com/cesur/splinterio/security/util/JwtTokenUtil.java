@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.cesur.splinterio.security.CustomUserDetail;
+import com.cesur.splinterio.security.model.CustomUserDetail;
 
 import java.util.Date;
 import java.util.stream.Collectors;

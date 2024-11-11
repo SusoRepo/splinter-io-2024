@@ -1,4 +1,4 @@
-package com.cesur.splinterio.security;
+package com.cesur.splinterio.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.cesur.splinterio.models.User;
 import com.cesur.splinterio.repositories.UserRepository;
+import com.cesur.splinterio.security.model.CustomUserDetail;
 
 @Component
 public class CustomUserDetailService implements UserDetailsService {

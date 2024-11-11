@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 
 import com.cesur.splinterio.models.AuthRequest;
 import com.cesur.splinterio.models.dtos.UserDTO;
-import com.cesur.splinterio.security.CustomUserDetail;
+import com.cesur.splinterio.security.model.CustomUserDetail;
 import com.cesur.splinterio.security.util.JwtTokenUtil;
 import com.cesur.splinterio.services.UserService;
 
