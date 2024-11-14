@@ -36,13 +36,16 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public List<Comment> listCommentByIncidence(Long incidenceId) {
-        return commentRepository.findByIncidenceId(incidenceId);
+        List<Comment> comments = commentRepository.findByIncidenceId(incidenceId);        
+        return comments;
         
     }
-
+    
     @Override
     public void deleteComment(Long commentId) {
-        commentRepository.deleteById(commentId);
+        Comment comment = commentRepository.findById(commentId).get();
+        comment.setDeletedAt(LocalDateTime.now());
+        commentRepository.save(comment);
     }
 
     @Override
